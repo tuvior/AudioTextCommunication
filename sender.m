@@ -6,10 +6,10 @@ A=1;
 Fs = 44100;
 
 % carrier frequency
-b_f = 1170;
+b_f = 1700;
 
 % frequency offset
-delta_f = 100;
+delta_f = 400;
 
 % code symbol frequencies
 f0 = b_f - delta_f;
@@ -41,7 +41,7 @@ bin = bin_t(:) - '0';
 % bit array of input text
 b = transpose(bin);
 
-sound_data = w_b;
+sound_data = [];
 
 for i = b
     if i == 1
@@ -51,4 +51,4 @@ for i = b
     end
 end
 
-sound(sound_data, Fs);
+%sound(sound_data, Fs);
