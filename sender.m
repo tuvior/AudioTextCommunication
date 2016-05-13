@@ -6,20 +6,26 @@ A=1;
 Fs = 44100;
 
 % carrier frequency
-b_f = 1000;
+b_f = 1170;
 
 % frequency offset
-delta_f = 200;
+delta_f = 100;
 
 % code symbol frequencies
 f0 = b_f - delta_f;
 f1 = b_f + delta_f;
 
 % duration of codeword
-w_duration = 400/lcm(f0, f1);
+w_duration = 30000/lcm(f0, f1);
 
 
 t = 0:(1/Fs):w_duration;
+
+% bound signal
+f_b = 2000;
+dur_b = 0.5;
+t_b = 0:(1/Fs):dur_b;
+w_b = A*cos(2*pi * f_b * t_b);
 
 % code signals
 w0 = A*cos(2*pi * f0 * t);
@@ -35,7 +41,7 @@ bin = bin_t(:) - '0';
 % bit array of input text
 b = transpose(bin);
 
-sound_data = [];
+sound_data = w_b;
 
 for i = b
     if i == 1

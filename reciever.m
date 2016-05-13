@@ -6,6 +6,10 @@ nChannels = 1;
 
 rec = audiorecorder(Fs,nBits,nChannels);
 recordblocking(rec, 4);
-y1 = getaudiodata(rec, 'double');
-plot(y1);
+rec_data = getaudiodata(rec, 'double');
+
+% signal needs to be split here
+
+[maxValue, indexMax] = max(abs(fft(rec_data - mean(rec_data))));
+plot(rec_data);
 axis([0 200000 -1 1]);
