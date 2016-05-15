@@ -30,7 +30,7 @@ end
 S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);
 
-out = char(decimalValues);
+out = transpose(char(decimalValues));
     
 
 %plot(rec_data);
