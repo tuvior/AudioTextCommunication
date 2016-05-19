@@ -18,7 +18,6 @@ f1 = b_f + delta_f;
 % duration of codeword
 w_duration = 6000/lcm(f0, f1);
 
-
 t = 0:(1/Fs):w_duration;
 
 % bound signal
@@ -41,8 +40,9 @@ bin = bin_t(:) - '0';
 % bit array of input text
 b = transpose(bin);
 
-sound_data = zeros(1, 15000);
-sound_data = [sound_data, w_b];
+% % emulated async
+% sound_data = [zeros(1, 15000), w_b];
+sound_data = w_b;
 
 for i = b
     if i == 1
@@ -52,9 +52,13 @@ for i = b
     end
 end
 
+% end bound signal
 sound_data = [sound_data, w_b];
-sound_data = [sound_data, zeros(1,10000)];
 
-sound_data = sound_data + randn(size(sound_data));
+% % emulated async and noise
+% sound_data = [sound_data, zeros(1,10000)];
+% sound_data = sound_data + randn(size(sound_data));
 
-%sound(sound_data, Fs);
+
+
+sound(sound_data, Fs);
