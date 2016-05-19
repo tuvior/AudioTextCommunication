@@ -21,6 +21,7 @@ sync_length = length(t_b);
 ft = 0;
 data_length = length(rec_data);
 
+% find beginning sync signal
 for pos = 1:100:(sync_length*10 - 1)
     start_i = pos;
     end_i = pos + sync_length - 1; 
@@ -37,6 +38,7 @@ end
 max_ve = 0;
 index_e = data_length;
 
+% find ending sync signal
 for pos = 1:100:(sync_length*10 - 1)
     start_i = data_length - sync_length + 1 - pos;
     end_i = data_length - pos;
@@ -50,19 +52,19 @@ for pos = 1:100:(sync_length*10 - 1)
     end
 end
     
-trimmed_data = rec_data(index+sync_length:index_e);
+estimated_length = index_e - (index + sync_length) + 1;
+nBits_ubound = ceil(estimated_length/length(t));
 
-tl = length(trimmed_data)/length(t);
-tl1 = ceil(tl);
-if rem(tl1,8) > 6
-    t_o = (tl1 + (8 - rem(tl1,8))) * length(t);
-else 
-    t_o = (tl1 - rem(tl1,8)) * length(t);
+% heuristic to decide whetever we cut out a character or not
+if rem(nBits_ubound,8) > 6
+    t_o = (nBits_ubound + (8 - rem(nBits_ubound,8))) * length(t);
+else tl1
+    t_o = (nBits_ubound - rem(nBits_ubound,8)) * length(t);
 end
-   
 
 trimmed_data = rec_data(index + sync_length:index + sync_length + t_o - 1);
 
+% reconstruct message from predominating frequencies
 temp = reshape(trimmed_data, length(t), []);
 [maxValue, indexMax] = max(abs(fft(temp - mean(temp(:)))));
 frequency = (indexMax-1) * Fs / length(t);
@@ -83,7 +85,3 @@ S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);
 
 out = transpose(char(decimalValues));
-    
-
-%plot(rec_data);
-%axis([0 200000 -1 1]);
