@@ -22,7 +22,7 @@ w_duration = 6000/lcm(f0, f1);
 t = 0:(1/Fs):w_duration;
 
 % bound signal
-f_b = 2000;
+f_b = 1000;
 dur_b = 0.5;
 t_b = 0:(1/Fs):dur_b;
 w_b = A*cos(2*pi * f_b * t_b);
@@ -41,7 +41,8 @@ bin = bin_t(:) - '0';
 % bit array of input text
 b = transpose(bin);
 
-sound_data = w_b
+sound_data = zeros(1, 15000);
+sound_data = [sound_data, w_b];
 
 for i = b
     if i == 1
@@ -51,4 +52,9 @@ for i = b
     end
 end
 
-sound(sound_data, Fs);
+sound_data = [sound_data, w_b];
+sound_data = [sound_data, zeros(1,10000)];
+
+sound_data = sound_data + randn(size(sound_data));
+
+%sound(sound_data, Fs);
