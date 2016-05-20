@@ -1,12 +1,37 @@
 % sample frequencty
 Fs = 44100;
 
+% parameters
+
+
+% carrier frequency
+b_f = 1700;
+
+% frequency offset
+delta_f = 400;
+
+% code symbol frequencies
+f0 = b_f - delta_f;
+f1 = b_f + delta_f;
+
+% duration of codeword
+w_duration = 3000/lcm(f0, f1);
+
+t = 0:(1/Fs):w_duration;
+
+% bound signal
+f_b = 1000;
+dur_b = 0.3;
+t_b = 0:(1/Fs):dur_b;
+
 nBits = 8;
 nChannels = 1;
 
 rec = audiorecorder(Fs,nBits,nChannels);
 disp('start recoding');
-recordblocking(rec, 13);
+record(rec);
+pause;
+stop(rec);
 disp('end recording');
 rec_data = getaudiodata(rec, 'double');
 
@@ -58,7 +83,7 @@ nBits_ubound = ceil(estimated_length/length(t));
 % heuristic to decide whetever we cut out a character or not
 if rem(nBits_ubound,8) > 6
     t_o = (nBits_ubound + (8 - rem(nBits_ubound,8))) * length(t);
-else tl1
+else 
     t_o = (nBits_ubound - rem(nBits_ubound,8)) * length(t);
 end
 
