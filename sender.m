@@ -10,24 +10,25 @@ Fs = 44100;
 b_f = 1700;
 
 % frequency offset
-delta_f = 400;
+delta_f = 600;
+
+% word duration
+w_duration = 0.2;
 
 % bound signal
-f_b = 500;
-dur_b = 1;
-t_b = 0:(1/Fs):dur_b;
-w_b = A*cos(2*pi * f_b * t_b);
+w_b = gen_bound(500, A, Fs, 1);
 
+% serialize text
 b = text2bin('jambon.txt');
 
 % % emulated async
 % sound_data = [zeros(1, 15000), w_b];
 % sound_data = w_b;
 
-sound_data = bin2sound(b, A, b_f, delta_f, 6000, Fs);
+sound_data = bin2sound(b, A, b_f, delta_f, w_duration, Fs);
 
 % end bound signal
-sound_data = [zeros(1, 1000), w_b, sound_data, w_b];
+sound_data = [zeros(1, 9348), w_b, sound_data, w_b, zeros(1, 2948)];
 
 % % emulated async and noise
 % sound_data = [sound_data, zeros(1,10000)];
