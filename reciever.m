@@ -1,6 +1,8 @@
 % sample frequencty
 Fs = 44100;
 
+A = 1;
+
 % parameters
 
 % carrier frequency
@@ -14,11 +16,14 @@ f0 = b_f - delta_f;
 f1 = b_f + delta_f;
 
 % duration of codeword
-w_duration = 0.2;
+w_duration = 0.05;
 t = 0:(1/Fs):w_duration;
 
-% bound signal
-w_b = gen_bound(500, 1, Fs, 1);
+% barker code
+% +1 +1 +1 −1 −1 −1 +1 −1 −1 +1 −1
+
+bound = [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1];
+w_b = bin2sound(bound, A, b_f, delta_f, w_duration, Fs); 
 
 % record data from microphone
 % rec_data = record(Fs);

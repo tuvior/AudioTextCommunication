@@ -13,10 +13,11 @@ b_f = 1700;
 delta_f = 600;
 
 % word duration
-w_duration = 0.2;
+w_duration = 0.05;
 
 % bound signal
-w_b = gen_bound(500, A, Fs, 1);
+bound = [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1];
+w_b = bin2sound(bound, A, b_f, delta_f, w_duration, Fs); 
 
 % serialize text
 b = text2bin('jambon.txt');
