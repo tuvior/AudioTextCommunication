@@ -1,9 +1,5 @@
-function sound_data = bin2sound ( bin , A, carrier_f, delta_f , w_duration, Fs)
+function sound_data = bin2sound ( bin , A, f0, f1 , w_duration, Fs)
 sound_data = [];
-
-f0 = carrier_f - delta_f;
-f1 = carrier_f + delta_f;
-
 t = 0:(1/Fs):w_duration;
 
 w0 = A*cos(2*pi * f0 * t);
