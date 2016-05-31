@@ -4,10 +4,10 @@ function bin_string = signal2bin( signal, f0, f1, word_length, Fs )
 % reconstruct message from predominating frequencies
 temp = reshape(signal, word_length, []);
 f_d = abs(fft(temp));
-b11 = floor((f0 - 25) * word_length / Fs);
-b12 = floor((f0 + 25) * word_length / Fs);
-b21 = floor((f1 - 25) * word_length / Fs);
-b22 = floor((f1 + 25) * word_length / Fs); 
+b11 = floor((f0 - 50) * word_length / Fs);
+b12 = floor((f0 + 50) * word_length / Fs);
+b21 = floor((f1 - 50) * word_length / Fs);
+b22 = floor((f1 + 50) * word_length / Fs); 
 f_d(1:b11, :) = 0;
 f_d(b12:b21, :) = 0;
 f_d(b22:end, :) = 0;

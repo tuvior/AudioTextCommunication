@@ -15,9 +15,9 @@ delta_f = b_f/4;
 %f0 = b_f - delta_f;
 %f1 = b_f + delta_f;
 
-[noise, Fs] = audioread('interference2.wav');
-[f1, f2] = analyse_noise(noise, Fs);
-[f0, f1] = pick_freq(f1, f2);
+[noise, Fs] = audioread('interference3.wav');
+[fn1, fn2] = analyse_noise(noise, Fs);
+[f0, f1] = pick_freq(fn1, fn2);
 
 Fs = 44100;
 
@@ -29,13 +29,12 @@ t = 0:(1/Fs):w_duration;
 % barker code
 % +1 +1 +1 −1 −1 −1 +1 −1 −1 +1 −1
 
-bound = [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1];
+bound = [1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1];
 w_b = bin2sound(bound, A, f0, f1, w_duration, Fs); 
 
 % record data from microphone
-% rec_data = record(Fs);sound_data = sound_data + (randn(size(sound_data)) * 4);
-
-rec_data = sound_data;
+rec_data = record(Fs);
+% rec_data = sound_data;
 
 % search sync signals at start and end
 [ix_s, ix_e] = bound_signal(w_b, rec_data);
