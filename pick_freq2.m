@@ -43,4 +43,10 @@ d6 = freq(7) - freq(6);
 split = max_d / 2;
 f_3 = freq(index) + split;
 
+freq_sort = sort([f_0, f_1, f_2, f_3]);
+f_0 = freq_sort(1);
+f_1 = freq_sort(2);
+f_2 = freq_sort(3);
+f_3 = freq_sort(4);
+
 end
