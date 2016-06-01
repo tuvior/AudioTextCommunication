@@ -5,6 +5,9 @@ function [ f_0, f_1, f_2, f_3 ] = pick_freq2( f1, f2)
 low = 400;
 high = 4000;
 
+f1 = f1- mod(f1, 20) + 10;
+f2 = f2 - mod(f2, 20) + 10;
+
 freq = [low, f1, f2, high];
 
 d1 = freq(2) - freq(1);

@@ -12,12 +12,8 @@ b_f = 800;
 % frequency offset
 delta_f = b_f/4;
 
-[noise, Fs] = audioread('interference3.wav');
-[f1, f2] = analyse_noise(noise, Fs);
+[f1, f2] = analyse_noise(Fs);
 [f0, f1, f2, f3] = pick_freq2(f1, f2);
-
-Fs = 44100;
-
 
 % word duration
 w_duration = 0.12;
@@ -36,7 +32,7 @@ b = text2bin('jambon.txt');
 sound_data = bin2sound2(b, A, f0, f1, f2, f3, w_duration, Fs);
 
 % end bound signal
-sound_data = [w_b, sound_data, w_b];
+sound_data = [zeros(1, 2398), w_b, sound_data, w_b, zeros(1, 4392)];
 
 %plot(sound_data);
 
@@ -44,4 +40,4 @@ sound_data = [w_b, sound_data, w_b];
 
 duration = length(sound_data)/Fs;
 
-sound(sound_data, Fs);
+%sound(sound_data, Fs);
