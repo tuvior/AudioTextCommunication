@@ -23,7 +23,7 @@ Fs = 44100;
 
 
 % duration of codeword
-w_duration = 0.1;
+w_duration = 0.12;
 t = 0:(1/Fs):w_duration;
 
 % barker code

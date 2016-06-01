@@ -10,7 +10,7 @@ sync_length = length(bound);
 lagDiff = lag(I);
 start_ix = lagDiff + sync_length;
 
-[acor,lag] = xcorr(signal(end-(sync_length*5):end), bound);
+[acor,lag] = xcorr(signal(end-(sync_length * 5):end), bound);
 
 [~,I] = max(abs(acor));
 lagDiff = lag(I);

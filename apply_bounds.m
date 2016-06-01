@@ -5,7 +5,7 @@ estimated_length = end_ix - start_ix - 1;
 nBits_ubound = ceil(estimated_length/word_length);
 
 % heuristic to decide whetever we cut out a character or not
-if rem(nBits_ubound,8) > 6
+if rem(nBits_ubound,8) > 3
     t_o = (nBits_ubound + (8 - rem(nBits_ubound,8))) * word_length;
 else 
     t_o = (nBits_ubound - rem(nBits_ubound,8)) * word_length;
