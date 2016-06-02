@@ -15,13 +15,13 @@ bin_string = [];
 
 for t=temp
     acor0 = abs(xcorr(t, w0));
-    acor0 = acor0(1);
+    acor0 = max(acor0(floor(length(acor0)/2) -10: floor(length(acor0)/2) +10));
     acor1 = abs(xcorr(t, w1));
-    acor1 = acor1(1);
+    acor1 = max(acor1(floor(length(acor1)/2) -10: floor(length(acor1)/2) +10));
     acor2 = abs(xcorr(t, w2));
-    acor2 = acor2(1);
+    acor2 = max(acor2(floor(length(acor2)/2) -10: floor(length(acor2)/2) +10));
     acor3 = abs(xcorr(t, w3));
-    acor3 = acor3(1);
+    acor3 = max(acor3(floor(length(acor3)/2) -10: floor(length(acor3)/2) +10));
 
     [~, i] = max([acor0, acor1, acor2, acor3]);
     

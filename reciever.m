@@ -22,8 +22,8 @@ delta_f = b_f/4;
 Fs = 44100;
 
 
-% duration of codeword
-w_duration = 0.12;
+% duration of codewordf(ft)
+w_duration = 0.04;
 t = 0:(1/Fs):w_duration;
 
 % barker code
@@ -52,3 +52,6 @@ S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);
 
 out = transpose(char(decimalValues));
+
+disp('result:');
+disp(out);
