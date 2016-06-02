@@ -5,6 +5,10 @@ function [ f_0, f_1, f_2, f_3 ] = pick_freq2( f1, f2)
 low = 400;
 high = 4000;
 
+base = [0, 200, 400, 600];
+bsize = 1000;
+
+
 f1 = f1- mod(f1, 20) + 10;
 f2 = f2 - mod(f2, 20) + 10;
 
@@ -51,5 +55,6 @@ f_0 = freq_sort(1);
 f_1 = freq_sort(2);
 f_2 = freq_sort(3);
 f_3 = freq_sort(4);
+
 
 end

@@ -14,16 +14,12 @@ delta_f = b_f/4;
 % code symbol frequencies
 %f0 = b_f - delta_f;
 %f1 = b_f + delta_f;
-
-% 
-[fn1, fn2] = analyse_noise( Fs);
-[f0, f1, f2, f3] = pick_freq2(fn1, fn2);
-
-Fs = 44100;
-
+ 
+%[fn1, fn2] = analyse_noise( Fs);
+[f0, f1, f2, f3] = pick_freq3(fn1, fn2);
 
 % duration of codewordf(ft)
-w_duration = 0.04;
+w_duration = 200/2000;
 t = 0:(1/Fs):w_duration;
 
 % barker code
@@ -35,8 +31,8 @@ w_b = bin2sound2(bound, A, f0, f1, f2, f3, w_duration, Fs);
 disp('noise');
 
 % record data from microphone
-rec_data = record(Fs);
-% rec_data = sound_data;
+% rec_data = record(Fs);
+rec_data = sound_data;
 
 % search sync signals at start and end
 [ix_s, ix_e] = bound_signal(w_b, rec_data);
