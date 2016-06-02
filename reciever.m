@@ -15,11 +15,11 @@ delta_f = b_f/4;
 %f0 = b_f - delta_f;
 %f1 = b_f + delta_f;
  
-%[fn1, fn2] = analyse_noise( Fs);
+[fn1, fn2] = analyse_noise( Fs);
 [f0, f1, f2, f3] = pick_freq3(fn1, fn2);
 
-% duration of codewordf(ft)
-w_duration = 200/4000;
+% duration of codewordf(ft)bin2sound3
+w_duration = 240/1200;
 t = 0:(1/Fs):w_duration;
 
 % barker code
@@ -31,8 +31,8 @@ w_b = bin2sound2(bound, A, f0, f1, f2, f3, w_duration, Fs);
 disp('noise');
 
 % record data from microphone
-% rec_data = record(Fs);
-rec_data = sound_data;
+rec_data = record(Fs);
+% rec_data = sound_data;
 
 % search sync signals at start and end
 [ix_s, ix_e] = bound_signal(w_b, rec_data);
@@ -43,9 +43,7 @@ trimmed_data = apply_bounds2(rec_data, length(t), ix_s, ix_e);
 disp(ix_e - ix_s);
 
 % reconstruct binary data
-%b_string = signal2bin2(trimmed_data, f0, f1, f2, f3, length(t), Fs);
-b_string = signal2bin5(trimmed_data, f0, f1, f2, f3, length(t), A, w_duration, Fs);
-
+b_string = signal2bin3(trimmed_data, f0, f1, f2, f3, length(t), A, w_duration, Fs);
 S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);
 

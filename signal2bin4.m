@@ -39,7 +39,7 @@ for t=temp
         disp('ERROR : could not retrieve bits');
     end
     
-    if j < 3 
+    if j < 5 
         j = j + 1;
     else
         bin_string = [bin_string, mode(bits_found)];
