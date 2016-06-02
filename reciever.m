@@ -16,7 +16,7 @@ delta_f = b_f/4;
 %f1 = b_f + delta_f;
 
 [noise, Fs] = audioread('interference3.wav');
-[fn1, fn2] = analyse_noise(noise, Fs);
+%[fn1, fn2] = analyse_noise(noise, Fs);
 [f0, f1, f2, f3] = pick_freq2(fn1, fn2);
 
 Fs = 44100;
@@ -43,7 +43,8 @@ rec_data = sound_data;
 trimmed_data = apply_bounds2(rec_data, length(t), ix_s, ix_e);
 
 % reconstruct binary data
-b_string = signal2bin2(trimmed_data, f0, f1, f2, f3, length(t), Fs);
+%b_string = signal2bin2(trimmed_data, f0, f1, f2, f3, length(t), Fs);
+b_string = signal2bin3(trimmed_data, f0, f1, f2, f3, length(t), A, w_duration, Fs);
 
 S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);

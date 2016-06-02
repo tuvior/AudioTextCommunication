@@ -12,8 +12,10 @@ b_f = 800;
 % frequency offset
 delta_f = b_f/4;
 
-[f1, f2] = analyse_noise(Fs);
-[f0, f1, f2, f3] = pick_freq2(f1, f2);
+%[fn1, fn2] = analyse_noise(Fs);
+fn1 = 678;
+fn2 = 1375;
+[f0, f1, f2, f3] = pick_freq2(fn1, fn2);
 
 % word duration
 w_duration = 0.12;
