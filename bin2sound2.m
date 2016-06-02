@@ -20,4 +20,5 @@ for i = bin
         sound_data = [sound_data, w3];
     end
 end
+
 end

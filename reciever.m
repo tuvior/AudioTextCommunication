@@ -40,9 +40,11 @@ rec_data = sound_data;
 % trim the signal with the found indices
 trimmed_data = apply_bounds2(rec_data, length(t), ix_s, ix_e);
 
+disp(ix_e - ix_s);
+
 % reconstruct binary data
 %b_string = signal2bin2(trimmed_data, f0, f1, f2, f3, length(t), Fs);
-b_string = signal2bin4(trimmed_data, f0, f1, f2, f3, length(t), A, w_duration, Fs);
+b_string = signal2bin5(trimmed_data, f0, f1, f2, f3, length(t), A, w_duration, Fs);
 
 S = transpose(reshape(b_string, 8, []));
 decimalValues = bin2dec(S);

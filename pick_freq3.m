@@ -5,7 +5,7 @@ function [ f_0, f_1, f_2, f_3 ] = pick_freq3( f1, f2)
 low = 400;
 high = 4000;
 
-base = [0, 200, 400, 600];
+base = [0, 240, 480, 720];
 bsize = 1000;
 offs = 0;
 
