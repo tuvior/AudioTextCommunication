@@ -14,10 +14,14 @@ temp = reshape(signal, word_length, []);
 bin_string = [];
 
 for t=temp
-    acor0 = max(abs(xcorr(t, w0)));
-    acor1 = max(abs(xcorr(t, w1)));
-    acor2 = max(abs(xcorr(t, w2)));
-    acor3 = max(abs(xcorr(t, w3)));
+    acor0 = abs(xcorr(t, w0));
+    acor0 = acor0(1);
+    acor1 = abs(xcorr(t, w1));
+    acor1 = acor1(1);
+    acor2 = abs(xcorr(t, w2));
+    acor2 = acor2(1);
+    acor3 = abs(xcorr(t, w3));
+    acor3 = acor3(1);
 
     [~, i] = max([acor0, acor1, acor2, acor3]);
     
