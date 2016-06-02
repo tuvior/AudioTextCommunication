@@ -12,13 +12,11 @@ b_f = 800;
 % frequency offset
 delta_f = b_f/4;
 
-%[fn1, fn2] = analyse_noise(Fs);
-fn1 = 678;
-fn2 = 1375;
+[fn1, fn2] = analyse_noise(Fs);
 [f0, f1, f2, f3] = pick_freq2(fn1, fn2);
 
 % word duration
-w_duration = 0.12;
+w_duration = 0.04;
 
 % bound signal
 bound = [1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1];
@@ -34,7 +32,7 @@ b = text2bin('jambon.txt');
 sound_data = bin2sound2(b, A, f0, f1, f2, f3, w_duration, Fs);
 
 % end bound signal
-sound_data = [zeros(1, 2398), w_b, sound_data, w_b, zeros(1, 4392)];
+sound_data = [w_b, sound_data, w_b];
 
 %plot(sound_data);
 
@@ -42,4 +40,5 @@ sound_data = [zeros(1, 2398), w_b, sound_data, w_b, zeros(1, 4392)];
 
 duration = length(sound_data)/Fs;
 
-%sound(sound_data, Fs);
+pause;
+sound(sound_data, Fs);
