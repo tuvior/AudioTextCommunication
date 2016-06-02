@@ -18,7 +18,7 @@ fn2 = 1375;
 [f0, f1, f2, f3] = pick_freq3(fn1, fn2);
 
 % word duration
-w_duration = 200/2000;
+w_duration = 200/4000;
 
 % bound signal
 bound = [1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1];

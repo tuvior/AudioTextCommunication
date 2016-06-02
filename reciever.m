@@ -19,7 +19,7 @@ delta_f = b_f/4;
 [f0, f1, f2, f3] = pick_freq3(fn1, fn2);
 
 % duration of codewordf(ft)
-w_duration = 200/2000;
+w_duration = 200/4000;
 t = 0:(1/Fs):w_duration;
 
 % barker code
